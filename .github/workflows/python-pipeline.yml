@@ -32,7 +32,7 @@ jobs:
     # 4. Ejecutación de pruebas unitarias
     - name: Run tests
       run: |
-        python test_script.py
+        python test_calculator.py
 
     # 5. Finalización
     - name: End
