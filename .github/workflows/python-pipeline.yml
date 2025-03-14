@@ -1,0 +1,40 @@
+name: Python CI/CD Pipeline Demo
+
+on:
+  push:
+    branches:
+      - pipeline-demo
+  pull_request:
+    branches:
+      - pipeline-demo
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Configución del repositorio
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # 2. Configuración de Python
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    # 3. Instalación de dependencias
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt || echo "No hay dependencias adicionales"
+
+    # 4. Ejecutación de pruebas unitarias
+    - name: Run tests
+      run: |
+        python test_script.py
+
+    # 5. Finalización
+    - name: End
+      run: |
+        echo "🎉 Pipeline finalizado"
